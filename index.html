@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>joi-react by foss-haas</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>joi-react</h1>
+        <h2>joi for React components</h2>
+        <a href="https://github.com/foss-haas/joi-react" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="synopsis" class="anchor" href="#synopsis" aria-hidden="true"><span class="octicon octicon-link"></span></a>Synopsis</h1>
+
+<p><strong>joi-react</strong> is a tiny wrapper to convert <a href="https://github.com/hapijs/joi">joi</a> schemas into <a href="https://github.com/facebook/react">React</a> PropType validators.</p>
+
+<p><a href="https://foss-haas.mit-license.org"><img src="https://img.shields.io/npm/l/joi-react.svg" alt="license - MIT"></a> <a href="https://david-dm.org/foss-haas/joi-react"><img src="https://img.shields.io/david/foss-haas/joi-react.svg" alt="Dependencies"></a></p>
+
+<p><a href="https://npmjs.org/package/joi-react"><img src="https://nodei.co/npm/joi-react.png?compact=true" alt="NPM status"></a></p>
+
+<p><a href="https://travis-ci.org/foss-haas/joi-react"><img src="https://img.shields.io/travis/foss-haas/joi-react.svg" alt="Build Status"></a> <a href="https://coveralls.io/r/foss-haas/joi-react?branch=master"><img src="https://img.shields.io/coveralls/foss-haas/joi-react.svg" alt="Coverage Status"></a></p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<h2>
+<a id="nodejs" class="anchor" href="#nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Node.js</h2>
+
+<h3>
+<a id="with-npm" class="anchor" href="#with-npm" aria-hidden="true"><span class="octicon octicon-link"></span></a>With NPM</h3>
+
+<div class="highlight highlight-sh"><pre>npm install joi-react</pre></div>
+
+<h3>
+<a id="from-source" class="anchor" href="#from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>From source</h3>
+
+<div class="highlight highlight-sh"><pre>git clone https://github.com/foss-haas/joi-react.git
+<span class="pl-s3">cd</span> joi-react
+npm install
+npm run <span class="pl-s3">test</span> <span class="pl-k">&amp;&amp;</span> npm run dist</pre></div>
+
+<h1>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h1>
+
+<h2>
+<a id="joitoproptypejoischemafunction" class="anchor" href="#joitoproptypejoischemafunction" aria-hidden="true"><span class="octicon octicon-link"></span></a>joiToPropType(joiSchema):Function</h2>
+
+<p>Takes a joi schema and returns a React PropType.</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-s">var</span> joi <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>joi<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> joiToPropType <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>joi-react<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> React <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> starsSchema <span class="pl-k">=</span> joi.number().integer().<span class="pl-s3">min</span>(<span class="pl-c1">1</span>).<span class="pl-s3">max</span>(<span class="pl-c1">5</span>).required();
+<span class="pl-s">var</span> starsPropType <span class="pl-k">=</span> joiToPropType(starsSchema);
+
+<span class="pl-s">var</span> Rating <span class="pl-k">=</span> React.createClass({
+  displayName<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>Rating<span class="pl-pds">'</span></span>,
+  propTypes<span class="pl-k">:</span> {
+    stars<span class="pl-k">:</span> starsPropType
+  },
+  <span class="pl-en">render</span>: <span class="pl-st">function</span> () {
+    <span class="pl-s">var</span> stars <span class="pl-k">=</span> [];
+    <span class="pl-k">for</span> (<span class="pl-s">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>; i <span class="pl-k">&lt;</span> <span class="pl-v">this</span>.props.stars; i<span class="pl-k">++</span>) {
+      stars.<span class="pl-s3">push</span>(React.<span class="pl-s3">createElement</span>(<span class="pl-s1"><span class="pl-pds">'</span>img<span class="pl-pds">'</span></span>, {src<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>star.png<span class="pl-pds">'</span></span>}));
+    }
+    <span class="pl-k">return</span> stars;
+  };
+});
+
+React.renderToString(React.<span class="pl-s3">createElement</span>(Rating));
+<span class="pl-c">// -&gt; Warning: value is required</span>
+React.renderToString(React.<span class="pl-s3">createElement</span>(Rating, {stars<span class="pl-k">:</span> <span class="pl-c1">0</span>}));
+<span class="pl-c">// -&gt; Warning: value must be larger than or equal to 1</span>
+React.renderToString(React.<span class="pl-s3">createElement</span>(Rating, {stars<span class="pl-k">:</span> <span class="pl-c1">6</span>}));
+<span class="pl-c">// -&gt; Warning: value must be less than or equal to 5</span>
+React.renderToString(React.<span class="pl-s3">createElement</span>(Rating, {stars<span class="pl-k">:</span> <span class="pl-c1">5</span>}));
+<span class="pl-c">// no warnings</span></pre></div>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>The MIT/Expat license. For more information, see <a href="http://foss-haas.mit-license.org/">http://foss-haas.mit-license.org/</a> or the accompanying <a href="https://github.com/foss-haas/joi-react/blob/master/LICENSE">LICENSE</a> file.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/foss-haas/joi-react/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/foss-haas/joi-react/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/foss-haas/joi-react"></a> is maintained by <a href="https://github.com/foss-haas">foss-haas</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
