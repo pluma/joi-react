@@ -1,6 +1,6 @@
 {
   "name": "joi-react",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Convert joi schemas to React PropTypes.",
   "main": "index.js",
   "scripts": {
