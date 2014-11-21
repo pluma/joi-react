@@ -1,0 +1,39 @@
+{
+  "name": "joi-react",
+  "version": "0.0.1",
+  "description": "Convert joi schemas to React PropTypes.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "jshint index.js test",
+    "test": "npm run lint && mocha --growl -R spec",
+    "cover": "npm run lint && istanbul cover --report lcov _mocha -- -R spec",
+    "coveralls": "npm run cover && cat ./coverage/lcov.info | coveralls ; rm -rf ./coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foss-haas/react-joi.git"
+  },
+  "keywords": [
+    "react",
+    "joi",
+    "proptypes",
+    "validation",
+    "components",
+    "schema"
+  ],
+  "author": "Alan Plum <me@pluma.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foss-haas/react-joi/issues"
+  },
+  "homepage": "https://github.com/foss-haas/react-joi",
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "expect.js": "^0.3.1",
+    "istanbul": "^0.3.2",
+    "joi": "^4.9.0",
+    "jshint": "^2.5.10",
+    "mocha": "^2.0.1",
+    "react": "^0.12.1"
+  }
+}
